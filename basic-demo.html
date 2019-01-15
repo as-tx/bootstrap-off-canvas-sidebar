@@ -1,0 +1,255 @@
+<html>
+<head>
+<title>Bootstrap 4 Off-canvas Sidebar - Basic Demo</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<style>
+	.bs-canvas-overlay {
+   		opacity: 0.85;
+		z-index: 1100;
+	}
+	
+	.bs-canvas {
+		top: 0;
+		z-index: 1110;
+		overflow-x: hidden;
+		overflow-y: auto;
+		width: 330px;
+		transition: margin .4s ease-out;
+		-webkit-transition: margin .4s ease-out;
+		-moz-transition: margin .4s ease-out;
+		-ms-transition: margin .4s ease-out;
+	}
+	
+	.bs-canvas-left {
+		left: 0;
+		margin-left: -330px;
+	}
+	
+	.bs-canvas-right {
+		right: 0;
+		margin-right: -330px;
+	}
+	
+	/* Only for demo */
+	body {
+    	min-height: 100vh;
+	}	
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-xl navbar-dark bg-info">
+	<a class="navbar-brand" href="#">Navbar</a>
+	<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+    <a class="pull-bs-canvas-right ml-3 order-xl-last btn btn-warning" href="#">&laquo;</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Link</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Dropdown
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+			</li>
+		</ul>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	</div>    
+</nav>
+<div class="d-flex justify-content-around my-5">
+	<div class="text-center border p-2 mx-5">
+    	<a class="pull-bs-canvas-left d-block text-success text-decoration-none" href="#">
+        	<span class="display-3">&#9776;</span>
+            <h6>Pull Left Canvas</h6>
+        </a>
+    </div>
+    <div class="flex-grow-1 text-center align-self-center">    	
+    	<h4 class="h4">Bootstrap Sidebar Canvas</h4>
+        <p class="lead">Basic Demo</p>            
+    </div>
+    <div class="text-center border p-2 mx-5">
+    	<a class="pull-bs-canvas-right d-block text-primary text-decoration-none" href="#">
+        	<span class="display-3">&#9776;</span>
+            <h6>Pull Right Canvas</h6>
+        </a>
+    </div>
+</div>
+<div class="container">
+	<p>Bootstrap version used: <span class="badge badge-pill badge-danger">4.2.1</span></p>
+	<p class="lead">This is a basic demo of Bootstrap 4 off-canvas sidebar, based on the <a href="#" class="text-primary">Fellow Tuts Article</a>.</p>
+    <div class="row my-5">
+    	<div class="col-sm-6">
+        	<p><u>Features</u>:</p>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Content overlay</li>
+                <li class="list-group-item">Left/right or both sidebars</li>
+                <li class="list-group-item">Sidebar opener in the navbar as well</li>
+            </ul>
+        </div>
+        <div class="col-sm-6">
+        	<p>Click to the left arrow yellow button at the top-right corner to the navbar button in the action. Clicking to the hamburger icon will also slide in the respective off-canvas sidebar.</p>
+            <hr class="w-25">
+            <p class="text-center">
+            	<a href="https://github.com/as-tx/as-tx.github.io/tree/master/bootstrap-off-canvas-sidebar" class="btn btn-outline-secondary" rel="nofollow">View source</a>
+                <a href="https://fellowtuts.com/bootstrap/off-canvas-sidebar-menu-minimum-code/" class="btn btn-primary">View article</a>
+                </p>
+        </div>        
+    </div>	
+</div>
+<div class="bs-canvas bs-canvas-left position-fixed bg-light h-100">
+	<header class="bs-canvas-header p-3 bg-success">
+    	<h4 class="d-inline-block text-light mb-0">Canvas Header</h4>
+        <button type="button" class="bs-canvas-close close" aria-label="Close"><span aria-hidden="true" class="text-light">&times;</span></button>
+    </header>
+    <div class="bs-canvas-content px-3 py-5">
+    	<div class="card mb-5">
+            <div class="card-header">
+                Featured
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-danger">Go somewhere</a>
+            </div>
+        </div>
+    	<form>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">Example multiple select</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="formControlRange">Example Range input</label>
+                <input type="range" class="form-control-range" id="formControlRange">
+            </div>
+            <p class="text-center mb-0"><button type="submit" class="btn btn-primary">Submit</button></p>
+        </form>        
+    </div>    
+</div>
+<!--
+<div class="bs-canvas bs-canvas-right position-fixed bg-light h-100">
+	<header class="bs-canvas-header p-3 bg-dark">
+    	<a class="bs-canvas-close h4 text-light mb-0 text-decoration-none" href="#">&times;</a>
+	<h4 class="d-inline-block text-light mb-0 float-right">Canvas Header</h4>
+    </header>
+</div>
+-->
+<div class="bs-canvas bs-canvas-right position-fixed bg-light h-100">
+	<header class="bs-canvas-header p-3 bg-primary overflow-auto">
+    	<button type="button" class="bs-canvas-close float-left close" aria-label="Close"><span aria-hidden="true" class="text-light">&times;</span></button>
+        <h4 class="d-inline-block text-light mb-0 float-right">Canvas Header</h4>
+    </header>
+    <div class="bs-canvas-content px-3 py-5">
+    	<table class="table">
+          	<thead class="thead-light">
+            	<tr>
+              		<th scope="col">#</th>
+              		<th scope="col">Item</th>
+              		<th scope="col">Qty.</th>
+              		<th scope="col">Remove</th>
+            	</tr>
+          	</thead>
+          	<tbody>
+            	<tr>
+              		<th scope="row">1</th>
+              		<td>Quilt</td>
+              		<td>2</td>
+              		<td class="text-center"><a href="" class="text-decoration-none text-muted">&times;</a></td>
+            	</tr>
+            	<tr>
+              		<th scope="row">2</th>
+              		<td>Shawl</td>
+              		<td>1</td>
+              		<td class="text-center"><a href="" class="text-decoration-none text-muted">&times;</a></td>
+            	</tr>
+                <tr>
+              		<th scope="row">3</th>
+              		<td>Pillow</td>
+              		<td>5</td>
+              		<td class="text-center"><a href="" class="text-decoration-none text-muted">&times;</a></td>
+            	</tr>
+          	</tbody>
+        </table>
+        <p class="text-center"><button type="button" class="btn btn-primary">Checkout</button></p>
+    	<div class="list-group my-5">
+          	<a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+          	<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+          	<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+          	<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+          	<a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+        </div>
+    	<p class="text-muted small">Subscribe to our newsletter:</p>
+    	<div class="input-group flex-nowrap">
+  			<div class="input-group-prepend">
+    			<span class="input-group-text" id="addon-wrapping">@</span>
+  			</div>
+  			<input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+        <p class="text-right mt-3 mb-0">
+        	<button type="button" class="btn btn-outline-dark">Subscribe</button>
+        </p>
+    </div>    
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script>
+jQuery(document).ready(function($){
+	$(document).on('click', '.pull-bs-canvas-right, .pull-bs-canvas-left', function(){
+		$('body').prepend('<div class="bs-canvas-overlay bg-dark position-fixed w-100 h-100"></div>');
+		if($(this).hasClass('pull-bs-canvas-right'))
+			$('.bs-canvas-right').addClass('mr-0');
+		else
+			$('.bs-canvas-left').addClass('ml-0');
+		return false;
+	});
+	
+	$(document).on('click', '.bs-canvas-close, .bs-canvas-overlay', function(){
+		var elm = $(this).hasClass('bs-canvas-close') ? $(this).closest('.bs-canvas') : $('.bs-canvas');
+		elm.removeClass('mr-0 ml-0');
+		$('.bs-canvas-overlay').remove();
+		return false;
+	});
+});
+</script>
+</body>
+</html>
