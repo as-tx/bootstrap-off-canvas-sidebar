@@ -1,0 +1,572 @@
+<html>
+<head>
+<title>Off-canvas Sidebar in Bootstrap 4 with Optional Overlay, Offset and Transitions</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+<style>
+	.bs-canvas-overlay {
+   		opacity: 0;
+		z-index: -1;
+	}
+	
+	.bs-canvas-overlay.show {
+   		opacity: 0.85;
+		z-index: 1100;
+	}
+	
+	.bs-canvas {
+		top: 0;
+		width: 0;
+		z-index: 1110;		
+		overflow-x: hidden;		
+		overflow-y: auto;		
+	}
+	
+	.bs-canvas-left {
+		left: 0;
+	}
+		
+	.bs-canvas-right {
+		right: 0;
+	}
+	
+	.bs-canvas-anim {
+		transition: all .4s ease-out;
+		-webkit-transition: all .4s ease-out;
+		-moz-transition: all .4s ease-out;
+		-ms-transition: all .4s ease-out;
+	}
+	
+	/*BEGIN STYLE FOR DEMO ONLY. DON'T COPY.*/
+	pre {
+ 		white-space: pre-wrap;       /* css-3 */
+		white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+		white-space: -pre-wrap;      /* Opera 4-6 */
+		white-space: -o-pre-wrap;    /* Opera 7 */
+		word-wrap: break-word;       /* Internet Explorer 5.5+ */
+	}
+	
+	.td-demo-btn {
+		width: 95px;
+	}
+	/*END STYLE FOR DEMO ONLY. DON'T COPY.*/		
+</style>
+</head>
+<body>
+<div class="bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100"></div>
+<nav class="navbar navbar-expand-xl navbar-dark bg-info">
+	<a class="navbar-brand" href="#">Navbar</a>
+	<button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+    <a class="btn btn-warning ml-3 order-xl-3" data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left" href="#" role="button">L</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item active">
+				<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="#">Link</a>
+			</li>
+			<li class="nav-item dropdown">
+				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				Dropdown
+				</a>
+				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+					<a class="dropdown-item" href="#">Action</a>
+					<a class="dropdown-item" href="#">Another action</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="#">Something else here</a>
+				</div>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+			</li>
+		</ul>
+		<form class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
+		</form>
+	</div>    
+</nav>
+<div class="bs-offset-main bs-canvas-anim">
+    <div class="bg-light border pb-5">
+    	<h4 class="text-center my-5">Off-canvas Sidebar in Bootstrap 4 with Optional Overlay, Offset and Transitions</h4>
+        <div class="container-fluid">
+        	<div class="row text-center">
+            	<div class="col-md-4">
+                	<p class="mb-0">Bootstrap version: <span class="badge badge-pill badge-danger">4.2.1</span></p>
+                </div>
+                <div class="col-md-4 my-3 my-md-0">
+                	<div class="border border-primary rounded d-inline-block px-2">
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" class="custom-control-input" id="cb-transition" checked>
+                            <label class="custom-control-label" for="cb-transition"><span class="text-primary">Transition is Enabled.</span></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                	<div>
+                        <button class="btn btn-danger" type="button" data-toggle="canvas" data-target="#bs-canvas-left" aria-expanded="false" aria-controls="bs-canvas-left">&#9776;</button>
+                        <button class="btn btn-primary" type="button" data-toggle="canvas" data-target="#bs-canvas-right" aria-expanded="false" aria-controls="bs-canvas-right">&#9776;</button>
+                    </div>
+                </div>
+            </div>
+        </div>    	
+    </div>
+    <div class="container my-5">    
+        <table class="table small table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Description and HTML</th>
+                    <th scope="col" class="td-demo-btn">Demo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <p>Defaults:</p>
+                        <ul>
+                            <li>Offset: false</li>
+                            <li>Overlay: true</li>
+                            <li>Width: 330px</li>
+                        </ul>
+                        <div>
+                            <pre class="pre-scrollable mb-0"><code>&#x3C;!-- Left --&#x3E;
+&#x3C;div id=&#x22;bs-canvas-left&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-light h-100&#x22;&#x3E;
+    
+&#x3C;!-- Right --&#x3E;
+&#x3C;div id=&#x22;bs-canvas-right&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100&#x22;&#x3E;</code></pre>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-demo" data-target="#bs-canvas-left">&#9776;</button>
+                        <span class="d-none" data-offset="false" data-overlay="true" data-width="330px"></span>
+                        <button type="button" class="btn btn-primary btn-demo" data-target="#bs-canvas-right">&#9776;</button>
+                        <span class="d-none" data-offset="false" data-overlay="true" data-width="330px"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Right sidebar custom width: 400px</p>                    
+                        <div>
+                            <pre class="pre-scrollable mb-0"><code>&#x3C;!-- Right --&#x3E;
+&#x3C;div id=&#x22;bs-canvas-right&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100&#x22; data-width=&#x22;400px&#x22;&#x3E;</code></pre>	
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-demo" data-target="#bs-canvas-right">&#9776;</button>
+                        <span class="d-none" data-offset="false" data-overlay="true" data-width="400px"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Left off-canvas full width content</p>                    
+                        <div>
+                            <pre class="pre-scrollable mb-0"><code>&#x3C;!-- Left --&#x3E;
+&#x3C;div id=&#x22;bs-canvas-left&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-light h-100&#x22; data-width=&#x22;100%&#x22;&#x3E;</code></pre>	
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-demo" data-target="#bs-canvas-left">&#9776;</button>
+                        <span class="d-none" data-offset="false" data-overlay="true" data-width="100%"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Right sidebar with content offset</p>                    
+                        <div>
+                            <pre class="pre-scrollable mb-0"><code>&#x3C;!-- Right --&#x3E;
+&#x3C;div id=&#x22;bs-canvas-right&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100&#x22; data-offset=&#x22;true&#x22;&#x3E;</code></pre>	
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-demo" data-target="#bs-canvas-right">&#9776;</button>
+                        <span class="d-none" data-offset="true" data-overlay="true" data-width="330px"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Offset: false</li>
+                            <li>Overlay: false</li>
+                            <li>Width: 330px</li>
+                        </ul>
+                        <div>
+                            <pre class="pre-scrollable mb-0"><code>&#x3C;!-- Left --&#x3E;
+&#x3C;div id=&#x22;bs-canvas-left&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-light h-100&#x22; data-overlay=&#x22;false&#x22;&#x3E;
+    
+&#x3C;!-- Right --&#x3E;
+&#x3C;div id=&#x22;bs-canvas-right&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100&#x22; data-overlay=&#x22;false&#x22;&#x3E;</code></pre>		
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-demo" data-target="#bs-canvas-left">&#9776;</button>
+                        <span class="d-none" data-offset="false" data-overlay="false" data-width="330px"></span>
+                        <button type="button" class="btn btn-primary btn-demo" data-target="#bs-canvas-right">&#9776;</button>
+                        <span class="d-none" data-offset="false" data-overlay="false" data-width="330px"></span>
+                    </td>
+                </tr>            
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Offset: true</li>
+                            <li>Overlay: false</li>
+                            <li>Width: 330px</li>
+                        </ul>
+                        <div>
+                            <pre class="pre-scrollable mb-0"><code>&#x3C;!-- Left --&#x3E;
+&#x3C;div id=&#x22;bs-canvas-left&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-light h-100&#x22; data-offset=&#x22;true&#x22; data-overlay=&#x22;false&#x22;&#x3E;
+    
+&#x3C;!-- Right --&#x3E;
+&#x3C;div id=&#x22;bs-canvas-right&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100&#x22; data-offset=&#x22;true&#x22; data-overlay=&#x22;false&#x22;&#x3E;</code></pre>	
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger btn-demo" data-target="#bs-canvas-left">&#9776;</button>
+                        <span class="d-none" data-offset="true" data-overlay="false" data-width="330px"></span>
+                        <button type="button" class="btn btn-primary btn-demo" data-target="#bs-canvas-right">&#9776;</button>
+                        <span class="d-none" data-offset="true" data-overlay="false" data-width="330px"></span>
+                    </td>
+                </tr> 
+            </tbody>
+        </table>
+    </div>
+    <div class="container-fluid mb-5">
+    	<div class="row">
+        	<div class="col-12">
+            	<div class="card bg-light">
+  					<h5 class="card-header">HTML</h5>
+  					<div class="card-body">
+    					<pre class="pre-scrollable mb-0"><code>&#x3C;body&#x3E;
+    &#x3C;!-- Overlay, must be placed direct after the opening body tag. --&#x3E;
+    &#x3C;div class=&#x22;bs-canvas-overlay bs-canvas-anim bg-dark position-fixed w-100 h-100&#x22;&#x3E;&#x3C;/div&#x3E;
+    
+    &#x3C;!-- Non-pushable content. --&#x3E;
+    &#x3C;nav class=&#x22;navbar&#x22;&#x3E;
+        ...
+    &#x3C;/nav&#x3E;
+    
+    &#x3C;!-- Pushable content along with off-canvas opener. --&#x3E;
+    &#x3C;div class=&#x22;bs-offset-main bs-canvas-anim&#x22;&#x3E;
+        ...
+        &#x3C;button class=&#x22;btn btn-danger&#x22; type=&#x22;button&#x22; data-toggle=&#x22;canvas&#x22; data-target=&#x22;#bs-canvas-left&#x22; aria-expanded=&#x22;false&#x22; aria-controls=&#x22;bs-canvas-left&#x22;&#x3E;&#x26;#9776;&#x3C;/button&#x3E;
+        &#x3C;button class=&#x22;btn btn-primary&#x22; type=&#x22;button&#x22; data-toggle=&#x22;canvas&#x22; data-target=&#x22;#bs-canvas-right&#x22; aria-expanded=&#x22;false&#x22; aria-controls=&#x22;bs-canvas-right&#x22;&#x3E;&#x26;#9776;&#x3C;/button&#x3E;
+        ...
+        ...
+    &#x3C;/div&#x3E;
+    
+    &#x3C;!-- Off-canvas sidebar markup, left/right or both. --&#x3E;
+    &#x3C;div id=&#x22;bs-canvas-left&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-light h-100&#x22;&#x3E;
+        &#x3C;header class=&#x22;bs-canvas-header p-3 bg-success&#x22;&#x3E;
+            &#x3C;h4 class=&#x22;d-inline-block text-light mb-0&#x22;&#x3E;Canvas Header&#x3C;/h4&#x3E;
+            &#x3C;button type=&#x22;button&#x22; class=&#x22;bs-canvas-close close&#x22; aria-label=&#x22;Close&#x22;&#x3E;&#x3C;span aria-hidden=&#x22;true&#x22; class=&#x22;text-light&#x22;&#x3E;&#x26;times;&#x3C;/span&#x3E;&#x3C;/button&#x3E;
+        &#x3C;/header&#x3E;
+        &#x3C;div class=&#x22;bs-canvas-content px-3 py-5&#x22;&#x3E;
+            ...
+        &#x3C;/div&#x3E;
+    &#x3C;/div&#x3E;
+        
+    &#x3C;div id=&#x22;bs-canvas-right&#x22; class=&#x22;bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100&#x22;&#x3E;
+        &#x3C;header class=&#x22;bs-canvas-header p-3 bg-primary overflow-auto&#x22;&#x3E;
+            &#x3C;button type=&#x22;button&#x22; class=&#x22;bs-canvas-close float-left close&#x22; aria-label=&#x22;Close&#x22;&#x3E;&#x3C;span aria-hidden=&#x22;true&#x22; class=&#x22;text-light&#x22;&#x3E;&#x26;times;&#x3C;/span&#x3E;&#x3C;/button&#x3E;
+            &#x3C;h4 class=&#x22;d-inline-block text-light mb-0 float-right&#x22;&#x3E;Canvas Header&#x3C;/h4&#x3E;
+        &#x3C;/header&#x3E;
+        &#x3C;div class=&#x22;bs-canvas-content px-3 py-5&#x22;&#x3E;
+            ...
+        &#x3C;/div&#x3E;    
+    &#x3C;/div&#x3E;
+&#x3C;/body&#x3E;</code></pre>
+  					</div>
+				</div>
+            </div>
+            <div class="col-12 my-4">
+            	<ul class="mb-0">
+                	<li>Remove the occurrences of <code>bs-canvas-anim</code> class from HTML to remove the smooth transition.</li>
+                    <li>Skip the respective sidebar and the opener button markup if you don't need at a particular side.</li>
+                    <li>Data attribute targeting to a class would fail to properly alter <code>aria-expanded</code> attribute value and further functioning.</li>	
+                    <li>While the full-width off-canvas sidebar for a menu is supported, you need to modify the sidebar markup to visually appear like a menu.</li>	
+                </ul>
+            </div>
+            <div class="col-lg-4">
+            	<div class="card bg-light">
+  					<h5 class="card-header">CSS</h5>
+  					<div class="card-body">
+    					<pre class="pre-scrollable mb-0"><code>.bs-canvas-overlay {
+   opacity: 0;
+   z-index: -1;
+}
+
+.bs-canvas-overlay.show {
+   opacity: 0.85;
+   z-index: 1100;
+}
+
+.bs-canvas {
+   top: 0;
+   width: 0;
+   z-index: 1110;
+   overflow-x: hidden;
+   overflow-y: auto;
+}
+
+.bs-canvas-left {
+   left: 0;
+}
+
+.bs-canvas-right {
+   right: 0;
+}
+
+.bs-canvas-anim {
+   transition: all .4s ease-out;
+   -webkit-transition: all .4s ease-out;
+   -moz-transition: all .4s ease-out;
+   -ms-transition: all .4s ease-out;
+}</code></pre>
+  					</div>
+				</div>
+            </div>
+            <div class="col-lg-8 mt-4 mt-lg-0">
+            	<div class="card bg-light">
+  					<h5 class="card-header">JS</h5>
+  					<div class="card-body">
+    					<pre class="pre-scrollable mb-0"><code>jQuery(document).ready(function($) {
+   var bsDefaults = {
+         offset: false,
+         overlay: true,
+         width: &#x27;330px&#x27;
+      },
+      bsMain = $(&#x27;.bs-offset-main&#x27;),
+      bsOverlay = $(&#x27;.bs-canvas-overlay&#x27;);
+
+   $(&#x27;[data-toggle=&#x22;canvas&#x22;][aria-expanded=&#x22;false&#x22;]&#x27;).on(&#x27;click&#x27;, function() {
+      var canvas = $(this).data(&#x27;target&#x27;),
+         opts = $.extend({}, bsDefaults, $(canvas).data()),
+         prop = $(canvas).hasClass(&#x27;bs-canvas-right&#x27;) ? &#x27;margin-right&#x27; : &#x27;margin-left&#x27;;
+
+      if (opts.width === &#x27;100%&#x27;)
+         opts.offset = false;
+      
+      $(canvas).css(&#x27;width&#x27;, opts.width);
+      if (opts.offset &#x26;&#x26; bsMain.length)
+         bsMain.css(prop, opts.width);
+
+      $(canvas + &#x27; .bs-canvas-close&#x27;).attr(&#x27;aria-expanded&#x27;, &#x22;true&#x22;);
+      $(&#x27;[data-toggle=&#x22;canvas&#x22;][data-target=&#x22;&#x27; + canvas + &#x27;&#x22;]&#x27;).attr(&#x27;aria-expanded&#x27;, &#x22;true&#x22;);
+      if (opts.overlay &#x26;&#x26; bsOverlay.length)
+         bsOverlay.addClass(&#x27;show&#x27;);
+      return false;
+   });
+
+   $(&#x27;.bs-canvas-close, .bs-canvas-overlay&#x27;).on(&#x27;click&#x27;, function() {
+      var canvas, aria;
+      if ($(this).hasClass(&#x27;bs-canvas-close&#x27;)) {
+         canvas = $(this).closest(&#x27;.bs-canvas&#x27;);
+         aria = $(this).add($(&#x27;[data-toggle=&#x22;canvas&#x22;][data-target=&#x22;#&#x27; + canvas.attr(&#x27;id&#x27;) + &#x27;&#x22;]&#x27;));
+         if (bsMain.length)
+            bsMain.css(($(canvas).hasClass(&#x27;bs-canvas-right&#x27;) ? &#x27;margin-right&#x27; : &#x27;margin-left&#x27;), &#x27;&#x27;);
+      } else {
+         canvas = $(&#x27;.bs-canvas&#x27;);
+         aria = $(&#x27;.bs-canvas-close, [data-toggle=&#x22;canvas&#x22;]&#x27;);
+         if (bsMain.length)
+            bsMain.css({
+               &#x27;margin-left&#x27;: &#x27;&#x27;,
+               &#x27;margin-right&#x27;: &#x27;&#x27;
+            });
+      }
+      canvas.css(&#x27;width&#x27;, &#x27;&#x27;);
+      aria.attr(&#x27;aria-expanded&#x27;, &#x22;false&#x22;);
+      if (bsOverlay.length)
+         bsOverlay.removeClass(&#x27;show&#x27;);
+      return false;
+   });
+});</code></pre>
+  					</div>
+				</div>
+            </div>
+        </div>
+    </div>    
+</div>
+<div id="bs-canvas-left" class="bs-canvas bs-canvas-anim bs-canvas-left position-fixed bg-light h-100">
+	<header class="bs-canvas-header p-3 bg-danger">
+    	<h4 class="d-inline-block text-light mb-0">Canvas Header</h4>
+        <button type="button" class="bs-canvas-close close" aria-label="Close"><span aria-hidden="true" class="text-light">&times;</span></button>
+    </header>
+    <div class="bs-canvas-content px-3 py-5">
+    	<div class="card mb-5">
+            <div class="card-header">
+                Featured
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-danger">Go somewhere</a>
+            </div>
+        </div>
+    	<form>
+            <div class="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlSelect2">Example multiple select</label>
+                <select multiple class="form-control" id="exampleFormControlSelect2">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="formControlRange">Example Range input</label>
+                <input type="range" class="form-control-range" id="formControlRange">
+            </div>
+            <p class="text-center mb-0"><button type="submit" class="btn btn-primary">Submit</button></p>
+        </form>        
+    </div>    
+</div>
+<div id="bs-canvas-right" class="bs-canvas bs-canvas-anim bs-canvas-right position-fixed bg-light h-100">
+	<header class="bs-canvas-header p-3 bg-primary overflow-auto">
+    	<button type="button" class="bs-canvas-close float-left close" aria-label="Close"><span aria-hidden="true" class="text-light">&times;</span></button>
+        <h4 class="d-inline-block text-light mb-0 float-right">Canvas Header</h4>
+    </header>
+    <div class="bs-canvas-content px-3 py-5">
+    	<table class="table">
+          	<thead class="thead-light">
+            	<tr>
+              		<th scope="col">#</th>
+              		<th scope="col">Item</th>
+              		<th scope="col">Qty.</th>
+              		<th scope="col">Remove</th>
+            	</tr>
+          	</thead>
+          	<tbody>
+            	<tr>
+              		<th scope="row">1</th>
+              		<td>Quilt</td>
+              		<td>2</td>
+              		<td class="text-center"><a href="" class="text-decoration-none text-muted">&times;</a></td>
+            	</tr>
+            	<tr>
+              		<th scope="row">2</th>
+              		<td>Shawl</td>
+              		<td>1</td>
+              		<td class="text-center"><a href="" class="text-decoration-none text-muted">&times;</a></td>
+            	</tr>
+                <tr>
+              		<th scope="row">3</th>
+              		<td>Pillow</td>
+              		<td>5</td>
+              		<td class="text-center"><a href="" class="text-decoration-none text-muted">&times;</a></td>
+            	</tr>
+          	</tbody>
+        </table>
+        <p class="text-center"><button type="button" class="btn btn-primary">Checkout</button></p>
+    	<div class="list-group my-5">
+          	<a href="#" class="list-group-item list-group-item-action">Cras justo odio</a>
+          	<a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+          	<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+          	<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+          	<a href="#" class="list-group-item list-group-item-action">Vestibulum at eros</a>
+        </div>
+    	<p class="text-muted small">Subscribe to our newsletter:</p>
+    	<div class="input-group flex-nowrap">
+  			<div class="input-group-prepend">
+    			<span class="input-group-text" id="addon-wrapping">@</span>
+  			</div>
+  			<input type="text" class="form-control" placeholder="Email" aria-label="Username" aria-describedby="addon-wrapping">
+		</div>
+        <p class="text-right mt-3 mb-0">
+        	<button type="button" class="btn btn-outline-dark">Subscribe</button>
+        </p>
+    </div>    
+</div>    
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script>
+jQuery(document).ready(function($){
+	var bsDefaults = {
+			offset: false,
+			overlay: true,
+			width: '330px'		
+		},
+		bsMain = $('.bs-offset-main'),
+		bsOverlay = $('.bs-canvas-overlay');	
+	
+	$('[data-toggle="canvas"][aria-expanded="false"]').on('click', function(){
+		var canvas = $(this).data('target'),
+			opts = $.extend({}, bsDefaults, $(canvas).data()),
+			prop = $(canvas).hasClass('bs-canvas-right') ? 'margin-right' : 'margin-left';
+		
+		if(opts.width === '100%')
+			opts.offset = false;
+		
+		$(canvas).css('width', opts.width);
+		if(opts.offset && bsMain.length)			
+			bsMain.css(prop, opts.width);		
+		
+		$(canvas + ' .bs-canvas-close').attr('aria-expanded', "true");
+		$('[data-toggle="canvas"][data-target="' + canvas + '"]').attr('aria-expanded', "true");
+		if(opts.overlay && bsOverlay.length)
+			bsOverlay.addClass('show');
+		return false;
+	});			
+	
+	$('.bs-canvas-close, .bs-canvas-overlay').on('click', function(){
+		var canvas, aria;
+		if($(this).hasClass('bs-canvas-close')) {
+			canvas = $(this).closest('.bs-canvas');
+			aria = $(this).add($('[data-toggle="canvas"][data-target="#' + canvas.attr('id') + '"]'));
+			if(bsMain.length)
+				bsMain.css(($(canvas).hasClass('bs-canvas-right') ? 'margin-right' : 'margin-left'), '');	
+		} else {
+			canvas = $('.bs-canvas');
+			aria = $('.bs-canvas-close, [data-toggle="canvas"]');
+			if(bsMain.length)
+				bsMain.css({'margin-left': '', 'margin-right': ''});
+		}
+		canvas.css('width', '');
+		aria.attr('aria-expanded', "false");
+		if(bsOverlay.length)	
+			bsOverlay.removeClass('show');		
+		return false;
+	});
+});
+</script>
+
+<!--BEGIN SCRIPT FOR DEMO ONLY. DON'T COPY.-->
+<script>
+jQuery(document).ready(function($){
+	$('#cb-transition').change(function() {
+		var chk = $(this).is(':checked');
+		$(this).closest('.border').toggleClass('border-primary', chk).toggleClass('border-secondary', !chk)
+		$('.bs-canvas-overlay, .bs-canvas-left, .bs-canvas-right, .bs-offset-main').toggleClass('bs-canvas-anim', chk);
+		$('.custom-control-label').html(chk ? '<span class="text-primary">Transition is Enabled.</span>' : '<span class="text-secondary">Transition is Disabled.</span>');		
+    });
+	
+	$('.btn-demo').click(function() {
+		var target = $(this).data('target');
+		$(target).data($(this).next().data());
+		$('[data-toggle="canvas"][data-target="' + target +'"]').first().click();
+	});
+});
+</script>
+<!--END SCRIPT FOR DEMO ONLY. DON'T COPY.-->
+</body>
+</html>
